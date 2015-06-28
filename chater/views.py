@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import authenticate
@@ -7,10 +8,8 @@ from django.template import loader, RequestContext
 def login(request):
     # import ipdb;ipdb.set_trace()
     template = loader.get_template('chater/login.html')
-    context = RequestContext(request, {
-        'aa': "aaaaaaa",
-    })
-    return HttpResponse(template.render(context))
+
+    return render(request,'chater/login.html')
     #return render(request,)
     # return HttpResponse("Hello, world. You're at the polls index.")
     # username = request.POST['username']
@@ -27,7 +26,11 @@ def login(request):
     #     return HttpResponse("The username and password were incorrect.")
 
 
-# def register(request):
+
+def register(request):
+    user = User.objects.create_user('test2', '', 'test2')
+    user.save()
+    return HttpResponse("register success!")
 
 
 #def listMessage(request):
