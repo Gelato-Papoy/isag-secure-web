@@ -7,7 +7,6 @@ web for improve secure web development skill
 * Django 1.8.2
 
 ```
-
 sudo apt-get install python-pip
 sudo pip install Django
 ```
@@ -16,6 +15,5 @@ sudo pip install Django
 * PostgreSQL 9.4.3
 
 ```
-
 sudo apt-get install pgadmin3
 ```
