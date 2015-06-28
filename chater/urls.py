@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from . import views
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^service/', include('chater.urls')),
-    url(r'^home/', include('chater.urls'))
+    url(r'^post/', views.postMessage),
+    url(r'^chatbox/', views.chatbox),
 ]

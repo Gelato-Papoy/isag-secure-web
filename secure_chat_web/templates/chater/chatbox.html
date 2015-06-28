@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>Chatbox</title>
+</head>
+<body>
+<h1>Chatbox</h1>
+<h2>CHeck your response</h2>
+<form action="/service/post/" method="POST">
+{% csrf_token %}
+    me <input type="text" name="user" class="submit-post"><br>
+
+    you <input type="text" name="talk" class="submit-post"> <br>
+    message <input type="text" name="message" class="submit-post"><br>
+
+      <input type="submit" name="submit" class="submit-post">
+</form>
+</body>
+</html>
