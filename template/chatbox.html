@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>Chatbox</title>
+</head>
+<body>
+<h1>Chatbox</h1>
+<h2>CHeck your response</h2>
+<form action="{% url guestbook-post %}" method="POST">
+
+    <input type="text" name="message" class="submit-post">
+    <p class="submit">
+      <input type="submit" name="submit" class="submit-post">
+    </p>
+</form>
+</body>
+</html>
