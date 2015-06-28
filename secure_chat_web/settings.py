@@ -76,13 +76,8 @@ WSGI_APPLICATION = 'secure_chat_web.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'secure_chat_web',
-        # The following settings are not used with sqlite3:
-        'USER': 'web',
-        'PASSWORD': 'web',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
