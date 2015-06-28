@@ -1,16 +1,34 @@
+<head>
+    <title>Chatbox</title>
+</head>
+
+<h2>Your Inbox</h2>
+
 {% if latest_message_list %}
     <ul>
-    {% for message in latest_message_list %}
-        <li>
-            From : {{ message.user }} <br>
-            To : {{ message.talk }} <br>
-            Message : {{ message.message }}
-            <hr>
-        </li>
-    {% endfor %}
+        {% for message in latest_message_list %}
+            <li>
+                From : {{ message.user }} <br>
+                To : {{ message.talk }} <br>
+                Message : {{ message.message }}
+                <hr>
+            </li>
+        {% endfor %}
     </ul>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
+
+<body>
+<h2>Chatbox</h2>
+<form action="/service/post/" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="user" class="submit-post" value={{ me }}><br>
+    To : <input type="text" name="talk" class="submit-post"> <br>
+    Message : <input type="text" name="message" class="submit-post"><br>
+
+    <input type="submit" name="submit" class="submit-post">
+</form>
+</body>
 
 <a href="/"><button>LOGOUT</button></a>

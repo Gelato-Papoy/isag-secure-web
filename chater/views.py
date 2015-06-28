@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from models import Messages
 from django.http import HttpResponse
@@ -17,7 +17,7 @@ def postMessage(request):
         msgDB.message = request.POST['message']
         msgDB.time = timezone.now()
         msgDB.save()
-        return HttpResponse("good")# Redirect after POST
+        return HttpResponseRedirect("/listmsg/")# Redirect after POST
     # else:
     #     form = ContactForm() # An unbound form
 from chater.models import Messages
@@ -72,5 +72,6 @@ def listMessage(request):
     template = loader.get_template('chater/listmessage.html')
     context = RequestContext(request, {
         'latest_message_list': latest_msg_list,
+        'me': u.username,
     })
     return HttpResponse(template.render(context))
