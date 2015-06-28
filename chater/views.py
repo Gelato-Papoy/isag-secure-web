@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.template import loader, RequestContext
+from chater.models import Messages
 
 
 def login(request):
@@ -43,7 +44,10 @@ def registersuccess(request):
     user.save()
     return HttpResponse("register success!")
 
-#def listMessage(request):
-#    latest_messages_list = Messages.objects.order_by('-pub_date')
-#    output = ', '.join([p.question_text for p in latest_messages_list])
-#    return HttpResponse(output)
+def listMessage(request):
+    latest_msg_list = Messages.objects.all
+    template = loader.get_template('chater/listmessage.html')
+    context = RequestContext(request, {
+        'latest_message_list': latest_msg_list,
+    })
+    return HttpResponse(template.render(context))

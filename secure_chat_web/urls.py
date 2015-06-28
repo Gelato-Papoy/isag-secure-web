@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^loginsuccess/', chater.views.loginsuccess),
     url(r'^registersuccess/', chater.views.registersuccess),
     url(r'^register/', chater.views.register),
-    url(r'^logout/', chater.views.logout)
+    url(r'^logout/', chater.views.logout),
+    url(r'^listmsg/', chater.views.listMessage)
 ]
