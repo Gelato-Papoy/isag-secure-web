@@ -45,7 +45,8 @@ def registersuccess(request):
     return HttpResponse("register success!")
 
 def listMessage(request):
-    latest_msg_list = Messages.objects.all
+    u = User.objects.get(id=request.session['user_id'])
+    latest_msg_list = Messages.objects.filter(talk=u.username)
     template = loader.get_template('chater/listmessage.html')
     context = RequestContext(request, {
         'latest_message_list': latest_msg_list,
