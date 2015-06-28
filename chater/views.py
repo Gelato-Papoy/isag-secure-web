@@ -25,10 +25,13 @@ def login(request):
     #     # the authentication system was unable to verify the username and password
     #     return HttpResponse("The username and password were incorrect.")
 
-
-
 def register(request):
-    user = User.objects.create_user('test2', '', 'test2')
+    return render(request,'chater/register.html')
+
+def registersuccess(request):
+    usr = request.POST['username']
+    passwd = request.POST['password']
+    user = User.objects.create_user(usr, '', passwd)
     user.save()
     return HttpResponse("register success!")
 
