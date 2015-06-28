@@ -1,9 +1,16 @@
 {% if latest_message_list %}
     <ul>
     {% for message in latest_message_list %}
-        <li>{{ message.message }}</li>
+        <li>
+            From : {{ message.user }} <br>
+            To : {{ message.talk }} <br>
+            Message : {{ message.message }}
+            <hr>
+        </li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
+
+<a href="/"><button>LOGOUT</button></a>
