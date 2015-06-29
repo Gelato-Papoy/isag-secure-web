@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+import chater
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^login/', include('chater.urls')),
+    url(r'^registersuccess/', chater.views.registersuccess),
+    url(r'^register/', chater.views.register)
 ]

@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'chater',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'secure_chat_web.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'secure_chat_web/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,6 +82,9 @@ DATABASES = {
     }
 }
 
+# TEMPLATE_DIRS = (
+#                     os.path.join(os.path.dirname(__file__),'template'),
+# )
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
