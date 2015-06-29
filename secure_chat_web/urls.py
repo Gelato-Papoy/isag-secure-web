@@ -20,7 +20,7 @@ import chater
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^service/', include('chater.urls')),
-    url(r'^home/', include('chater.urls'))
+    url(r'^home/', include('chater.urls')),
     url(r'^login/', include('chater.urls')),
     url(r'^registersuccess/', chater.views.registersuccess),
     url(r'^register/', chater.views.register)

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """secure_chat_web URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
