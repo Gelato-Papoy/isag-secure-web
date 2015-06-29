@@ -1,3 +1,7 @@
+{% extends "chater/index.html" %}
+
+{% block content %}
+
 <head>
     <title>Chatbox</title>
 </head>
@@ -24,11 +28,16 @@
 <form action="/service/post/" method="POST">
     {% csrf_token %}
     <input type="hidden" name="user" class="submit-post" value={{ me }}><br>
-    To : <input type="text" name="talk" class="submit-post"> <br>
-    Message : <input type="text" name="message" class="submit-post"><br>
+    To : <input type="text" name="talk" class="form-control" placeholder="To...">
+<br>
+{#    <input type="text" name="talk" class="submit-post"> <br>#}
+    Message : <textarea class="form-control" name="message" rows="3"></textarea>
 
-    <input type="submit" name="submit" class="submit-post">
+{#    <input type="text" name="message" class="submit-post"><br>#}
+    <br>
+    <button type="submit" class="btn btn-primary">Send</button>
+{#    <input type="submit" name="submit" class="submit-post">#}
 </form>
 </body>
 
-<a href="/"><button>LOGOUT</button></a>
+{% endblock %}

@@ -56,7 +56,10 @@ def loginsuccess(request):
 
 def logout(request):
     del request.session['user_id']
-    return HttpResponse("You're logged out.<br><br><a href=\"/\"><button>LOGIN</button></a>")
+    return redirect('/logoutsuccess/')
+
+def logoutsuccess(request):
+    return render(request,'chater/logout.html')
 
 def register(request):
     return render(request,'chater/register.html')
