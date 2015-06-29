@@ -8,7 +8,11 @@ from django.utils import timezone
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.template import loader, RequestContext
-# Create your views here.
+from chater.models import Messages
+
+def index(request):
+    return render(request,'chater/index.html')
+
 def postMessage(request):
     if request.method == 'POST':
         msgDB = Messages()
@@ -20,8 +24,6 @@ def postMessage(request):
         return HttpResponseRedirect("/listmsg/")# Redirect after POST
     # else:
     #     form = ContactForm() # An unbound form
-from chater.models import Messages
-
     # return render(request, 'contact.html', {
     #     'form': form,
     # })
