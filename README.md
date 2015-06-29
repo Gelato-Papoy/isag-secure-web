@@ -10,10 +10,3 @@ web for improve secure web development skill
 sudo apt-get install python-pip
 sudo pip install Django
 ```
-
-
-* PostgreSQL 9.4.3
-
-```
-sudo apt-get install pgadmin3
-```
