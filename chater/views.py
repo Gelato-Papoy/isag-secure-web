@@ -80,3 +80,6 @@ def listMessage(request):
         'me': u.username,
     })
     return HttpResponse(template.render(context))
+    
+def about(request):
+    return render(request,'chater/about.html')
