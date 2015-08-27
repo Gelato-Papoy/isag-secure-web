@@ -24,9 +24,9 @@ PROJECT_PATH_JOIN = lambda a, *p: os.path.join(BASE_DIR, a, *p)
 SECRET_KEY = 'pi-hbgg%u$z+=o%8ym5mw6@c=2i1i#u0)bdv^zx4i9akfxun*m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '161.246.5.44']
 
 
 # Application definition
