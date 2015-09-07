@@ -33,11 +33,16 @@ def chatbox(request):
     return render(request,'chater/chatbox.html')
 
 def login(request):
-    return render(request,'chater/login.html')
+    # import ipdb;ipdb.set_trace()
+    if not request.session.is_empty():
+        return redirect("/listmsg")
+    else:
+        return render(request,'chater/login.html')
     #return render(request,)
     # return HttpResponse("Hello, world. You're at the polls index.")
 
 def loginsuccess(request):
+    # import ipdb;ipdb.set_trace()
     usr = request.POST['username']
     passwd = request.POST['password']
     user = authenticate(username=usr, password=passwd)
@@ -55,8 +60,13 @@ def loginsuccess(request):
         return HttpResponse("The username and password were incorrect.<br><br><a href=\"/\"><button>LOGIN</button></a>")
 
 def logout(request):
-    del request.session['user_id']
-    return redirect('/logoutsuccess/')
+    # import ipdb;ipdb.set_trace()
+    if not request.session.is_empty():
+        request.session.delete()
+        return redirect('/logoutsuccess/')
+
+    else:
+        return redirect('/login/')
 
 def logoutsuccess(request):
     return render(request,'chater/logout.html')
@@ -72,14 +82,17 @@ def registersuccess(request):
     return redirect('/')
 
 def listMessage(request):
-    u = User.objects.get(id=request.session['user_id'])
-    latest_msg_list = Messages.objects.filter(talk=u.username)
-    template = loader.get_template('chater/listmessage.html')
-    context = RequestContext(request, {
-        'latest_message_list': latest_msg_list,
-        'me': u.username,
-    })
-    return HttpResponse(template.render(context))
+    if not request.session.is_empty() or request.user.is_anonymous():
+        u = User.objects.get(id=request.session['user_id'])
+        latest_msg_list = Messages.objects.filter(talk=u.username)
+        template = loader.get_template('chater/listmessage.html')
+        context = RequestContext(request, {
+            'latest_message_list': latest_msg_list,
+            'me': u.username,
+        })
+        return HttpResponse(template.render(context))
+    else:
+        return redirect('/login/')
     
 def about(request):
     return render(request,'chater/about.html')
