@@ -20,5 +20,7 @@ from . import views
 urlpatterns = [
 	url(r'^$', views.login),
     url(r'^post/$', views.postMessage),
+    url(r'^setting/$', views.usrSetting),
+    url(r'^chgpasswd/$', views.changePassword)
     # url(r'^chatbox/$', views.chatbox),
 ]

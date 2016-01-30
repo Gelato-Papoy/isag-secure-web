@@ -96,3 +96,32 @@ def listMessage(request):
     
 def about(request):
     return render(request,'chater/about.html')
+
+def usrSetting(request):
+    if not request.session.is_empty() or request.user.is_anonymous():
+        u = User.objects.get(id=request.session['user_id'])
+        latest_msg_list = Messages.objects.filter(talk=u.username)
+        template = loader.get_template('chater/setting.html')
+        context = RequestContext(request, {
+            'latest_message_list': latest_msg_list,
+            'me': u.username,
+        })
+        return HttpResponse(template.render(context))
+    else:
+        return redirect('/login/')
+
+def changePassword(request):
+    if request.method == 'POST':
+        cuurentUser = request.POST['user']
+        oldPassword = request.POST['oldpwd']
+        newPassword = request.POST['newpwd']
+        user = authenticate(username=cuurentUser, password=oldPassword)
+        if user.is_active:
+            print("Authenticate")
+            u = User.objects.get(username=cuurentUser)
+            u.set_password(newPassword)
+            u.save()
+            return HttpResponseRedirect("/service/setting/" )
+        else:
+            print("Password not valid")            
+       

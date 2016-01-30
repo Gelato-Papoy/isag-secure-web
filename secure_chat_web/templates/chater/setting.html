@@ -1,0 +1,24 @@
+{% extends "chater/index.html" %}
+
+{% block content %}
+
+
+<h1>Change Password</h1>
+<h2>{{ me }}</h2>
+
+<form action="/service/chgpasswd/" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="user" class="submit-post" value={{ me }}><br>
+    Old Password : <input type="text" name="oldpwd" class="form-control" placeholder="old password">
+<br>
+
+    New Password : <input type="text" class="form-control" name="newpwd" placeholder="new password">
+ 
+
+    <br>
+    <button type="submit" class="btn btn-primary">Send</button>
+
+</form>
+</body>
+
+{% endblock %}
