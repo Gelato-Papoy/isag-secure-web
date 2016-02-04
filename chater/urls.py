@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^post/$', views.postMessage),
     url(r'^chatbox/$', views.chatbox),
     url(r'^download_file/$', views.downloadFile)
+
 ]
