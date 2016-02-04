@@ -22,5 +22,7 @@ urlpatterns = [
     url(r'^post/$', views.postMessage),
     url(r'^chatbox/$', views.chatbox),
     url(r'^download_file/$', views.downloadFile)
-
+    url(r'^setting/$', views.usrSetting),
+    url(r'^chgpasswd/$', views.changePassword)
+    # url(r'^chatbox/$', views.chatbox),
 ]
