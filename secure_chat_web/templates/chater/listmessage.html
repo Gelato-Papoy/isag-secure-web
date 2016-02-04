@@ -15,6 +15,7 @@
                 From : {{ message.user }} <br>
                 To : {{ message.talk }} <br>
                 Message : {{ message.message }}
+                File : <a>{{ message.file_path }}</a>
                 <hr>
             </li>
         {% endfor %}
@@ -25,7 +26,7 @@
 
 <body>
 <h2>Chatbox</h2>
-<form action="/service/post/" method="POST">
+<form action="/service/post/" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="hidden" name="user" class="submit-post" value={{ me }}><br>
     To : <input type="text" name="talk" class="form-control" placeholder="To...">
@@ -34,6 +35,7 @@
     Message : <textarea class="form-control" name="message" rows="3"></textarea>
 
 {#    <input type="text" name="message" class="submit-post"><br>#}
+    <input name="file" type="file" class="submit-post">
     <br>
     <button type="submit" class="btn btn-primary">Send</button>
 {#    <input type="submit" name="submit" class="submit-post">#}

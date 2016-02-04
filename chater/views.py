@@ -1,17 +1,36 @@
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from models import Messages
-from django.http import HttpResponse
-from django.utils import timezone
 from django.shortcuts import render, redirect
+from models import Messages
+from django.http import HttpResponse, HttpResponseRedirect
+from django.utils import timezone
 from django.contrib.auth import authenticate
 from django.template import loader, RequestContext
 from chater.models import Messages
+# from .forms import UploadFileForm
+import os, tempfile, zipfile, mimetypes
+# from django.core.servers.basehttp import FileWrapper
+from django.core.files.base import ContentFile
+from django.utils.six import b
+from django.core.files import File
+from django.utils.encoding import smart_str
 
 def index(request):
     return render(request,'chater/index.html')
+
+def downloadFile(request):
+    if request.method == 'GET':
+        filename = request.GET['file_name']
+        download_name = filename[10:]
+        # ipdb.set_trace()
+        download_file = File.open(filename)
+        content_type = mimetypes.guess_type(filename)[0]
+        response     = HttpResponse(download_file,content_type=content_type)
+        response['Content-Length']      = os.path.getsize(filename)    
+        response['Content-Disposition'] = "attachment; filename=%s"%download_name
+        response['X-Sendfile'] = smart_str(filename)
+        return response
 
 def postMessage(request):
     if request.method == 'POST':
@@ -20,6 +39,13 @@ def postMessage(request):
         msgDB.talk = request.POST['talk']
         msgDB.message = request.POST['message']
         msgDB.time = timezone.now()
+        # form = UploadFileForm(request.POST, request.FILES)
+        # if form.is_valid():
+        # print request.FILES['file']
+        # ipdb.set_trace()
+        msgDB.file_path = request.FILES['file']
+        # instance = ModelWithFileField(file_field=request.FILES['file'])
+        # form = UploadFileForm(request.POST, request.FILES)
         msgDB.save()
         return HttpResponseRedirect("/listmsg/")# Redirect after POST
     # else:
